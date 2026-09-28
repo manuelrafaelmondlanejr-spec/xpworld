@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-MZ">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>XP WORLD — Loja Oficial</title>
+  <meta name="description" content="Loja oficial do servidor XP WORLD Minecraft Bedrock.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">XP <span>WORLD</span></div>
+  <nav>
+    <a href="#inicio">Início</a><a href="#loja">Loja</a><a href="#servidor">Servidor</a><a href="#suporte">Suporte</a>
+  </nav>
+</header>
+
+<main>
+<section id="inicio" class="hero">
+  <div class="hero-copy">
+    <div class="pill">🟢 SERVIDOR ONLINE</div>
+    <h1>XP WORLD</h1>
+    <p>Compre itens, kits e vantagens para o seu Minecraft Bedrock.</p>
+    <a class="btn" href="#loja">🛒 Abrir loja</a>
+  </div>
+  <div class="hero-card">
+    <div class="server-dot"></div>
+    <b>XP WORLD • SEMI ANARQUIA</b>
+    <span>Bedrock Edition</span>
+    <strong>IP: XP-World1.aternos.me</strong>
+    <strong>Porta: 30224</strong>
+  </div>
+</section>
+
+<section class="ad">
+  <small>PUBLICIDADE</small>
+  <div>Espaço reservado para anúncios</div>
+</section>
+
+<section id="loja" class="section">
+  <div class="section-title"><span>LOJA</span><h2>Escolha sua recompensa</h2></div>
+  <div class="grid">
+    <article class="product">
+      <div class="icon">⚔️</div><h3>Kit Guerreiro</h3><p>Kit inicial para dominar a arena.</p>
+      <div class="price">25 MT</div><button onclick="buy('Kit Guerreiro',25)">Comprar</button>
+    </article>
+    <article class="product">
+      <div class="icon">💎</div><h3>100 Diamantes</h3><p>Pacote de diamantes para sua aventura.</p>
+      <div class="price">30 MT</div><button onclick="buy('100 Diamantes',30)">Comprar</button>
+    </article>
+    <article class="product">
+      <div class="icon">👑</div><h3>VIP 30 Dias</h3><p>Vantagens especiais durante 30 dias.</p>
+      <div class="price">100 MT</div><button onclick="buy('VIP 30 Dias',100)">Comprar</button>
+    </article>
+  </div>
+</section>
+
+<section id="servidor" class="section server">
+  <div><div class="section-title"><span>SERVIDOR</span><h2>Entra no XP WORLD</h2></div>
+  <p>Servidor Minecraft Bedrock. Copia o endereço abaixo para adicionar o servidor.</p></div>
+  <div class="ipbox"><span>XP-World1.aternos.me</span><b>30224</b><button onclick="copyIP()">Copiar IP</button></div>
+</section>
+
+<section class="ad">
+  <small>PUBLICIDADE</small>
+  <div>Espaço reservado para anúncios</div>
+</section>
+
+<section id="suporte" class="section support">
+  <div class="section-title"><span>SUPORTE</span><h2>Precisas de ajuda?</h2></div>
+  <p>Antes de pagar, confirma o seu Nick exatamente como aparece no Minecraft.</p>
+  <p>Para suporte, substitua o contacto abaixo pelo WhatsApp/Discord oficial do XP WORLD.</p>
+  <a class="btn secondary" href="#" onclick="alert('Configure aqui o link do WhatsApp/Discord do XP WORLD.');return false;">💬 Contactar suporte</a>
+</section>
+</main>
+
+<div id="modal" class="modal hidden">
+  <div class="checkout-card">
+    <button class="close" onclick="closeModal()" aria-label="Fechar">×</button>
+    <div class="checkout-head">
+      <div>
+        <span class="checkout-kicker">XP WORLD STORE</span>
+        <h2>Finalizar compra</h2>
+        <p>Confirma os dados abaixo antes de continuar.</p>
+      </div>
+      <div class="secure-badge">🔒 Compra segura</div>
+    </div>
+
+    <div class="checkout-layout">
+      <section class="checkout-form">
+        <div class="step"><span>1</span><div><strong>Dados do jogador</strong><small>Entrega no teu Nick</small></div></div>
+        <label>Nick do Minecraft</label>
+        <input id="nick" placeholder="Ex.: FlameButs7" maxlength="32" autocomplete="off">
+
+        <label>Número para pagamento</label>
+        <input id="phone" inputmode="tel" placeholder="84 000 0000" maxlength="15" autocomplete="tel">
+
+        <div class="step payment-step"><span>2</span><div><strong>Forma de pagamento</strong><small>Escolhe a tua carteira</small></div></div>
+        <div class="payment-options">
+          <button type="button" class="payment-option active" data-payment="M-Pesa" onclick="choosePayment('M-Pesa')">
+            <span class="payment-logo mpesa">M</span><span><b>M-Pesa</b><small>Pagamento móvel</small></span><i>✓</i>
+          </button>
+          <button type="button" class="payment-option" data-payment="e-Mola" onclick="choosePayment('e-Mola')">
+            <span class="payment-logo emola">e</span><span><b>e-Mola</b><small>Pagamento móvel</small></span><i>✓</i>
+          </button>
+        </div>
+        <input type="hidden" id="payment" value="M-Pesa">
+
+        <div class="step coupon-step"><span>3</span><div><strong>Código promocional</strong><small>Tem um cupom? Usa aqui.</small></div></div>
+        <div class="coupon-box">
+          <div class="coupon-row">
+            <input id="coupon" placeholder="Ex.: XPW30" maxlength="20" autocomplete="off">
+            <button type="button" class="coupon-btn" onclick="applyCoupon()">Aplicar</button>
+          </div>
+          <p id="couponMessage" class="coupon-message"></p>
+        </div>
+      </section>
+
+      <aside class="order-summary">
+        <div class="summary-label">RESUMO DO PEDIDO</div>
+        <div class="summary-product">
+          <div class="summary-icon">⚔️</div>
+          <div><strong id="modalTitle">Comprar</strong><span id="modalPrice"></span></div>
+        </div>
+        <div class="summary-lines">
+          <div><span>Subtotal</span><b id="summarySubtotal"></b></div>
+          <div class="discount-line"><span>Desconto</span><b id="summaryDiscount">− 0,00 MT</b></div>
+        </div>
+        <div class="total-box"><span>Total a pagar</span><strong id="modalTotal"></strong></div>
+        <button class="btn full pay-btn" onclick="submitOrder()">Pagar agora <span>→</span></button>
+        <p class="payment-note">Após a integração oficial, a confirmação será feita pelo sistema da operadora. <b>O XP WORLD nunca pede o teu PIN.</b></p>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 XP WORLD • Loja oficial • Feito para Minecraft Bedrock</footer>
+<script src="app.js"></script>
+</body>
+</html>
